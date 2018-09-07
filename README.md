@@ -1,1 +1,1 @@
-
+用户名随意，密码123456，密码写死在：SsoUserDetailsService

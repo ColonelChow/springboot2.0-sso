@@ -18,6 +18,24 @@ public class SsoUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return new User(username, passwordEncoder.encode("123456"), AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
+        User user = new User(username, passwordEncoder.encode("123456"), AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
+        return user ;
+
+
+
+        /***此处查询数据库或者用户认证接口即可。*/
+        /*
+        String passwd = "";
+        System.out.println("收到的账号"+username);
+        if (CheckFormat.isEmail(username)){
+            passwd = userService.selectPasswdByEmail(username);
+        }else if (CheckFormat.isPhone(username)){
+            passwd = userService.selectPasswdByPhone(username);
+        }else {
+            throw new RuntimeException("登录账号不存在");
+        }
+        System.out.println("查到的密码"+passwd);
+        return new User(username, passwd, AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
+        */
     }
 }

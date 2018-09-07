@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
+
 
 @SpringBootApplication
 @RestController
@@ -15,6 +17,10 @@ public class SsoClient1Application {
     @GetMapping("/user")
     public Authentication user(Authentication user) {
         return user;
+    }
+    @RequestMapping("time")
+    public Instant getTime() {
+        return Instant.now();
     }
 
     public static void main(String[] args) {

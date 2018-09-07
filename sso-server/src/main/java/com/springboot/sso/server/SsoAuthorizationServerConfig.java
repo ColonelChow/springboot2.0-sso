@@ -20,7 +20,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     /**
-     * 客户端一些配置
+     * 客户端配置-令牌发给谁
      * @param clients
      * @throws Exception
      */
@@ -29,6 +29,9 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
         clients.inMemory()
                 .withClient("merryyou1")
                 .secret(new BCryptPasswordEncoder().encode("merryyousecrect1"))
+                //有效时间
+                .accessTokenValiditySeconds(30)
+                //密码授权模式和刷新令牌
                 .authorizedGrantTypes("authorization_code", "refresh_token")
 //                .redirectUris("http://sso-taobao:8083/client1")
                 .scopes("all","read","write")
@@ -53,7 +56,7 @@ public class SsoAuthorizationServerConfig extends AuthorizationServerConfigurerA
     }
 
     /**
-     * springSecurity 授权表达式，访问merryyou tokenkey时需要经过认证
+     * springSecurity 授权表达式，访问tokenkey时需要经过认证
      * @param security
      * @throws Exception
      */
