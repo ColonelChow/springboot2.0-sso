@@ -64,7 +64,7 @@ public class SsoSecurityConfig extends WebSecurityConfigurerAdapter {
 
     protected void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("merryyou1")
+                .withClient("client1")
          .accessTokenValiditySeconds(30)
         ;
     }
