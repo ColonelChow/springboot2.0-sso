@@ -36,6 +36,7 @@ public class SsoSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().loginPage("/authentication/require")
                 .loginProcessingUrl("/authentication/form")
                 .and().authorizeRequests()
+                //不用验证的资源
                 .antMatchers("/authentication/require",
                         "/authentication/form",
                         "/**/*.js",
@@ -51,6 +52,7 @@ public class SsoSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()
+                //启用一下代码登录失败
                 //.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and().authorizeRequests()
                 ;
 //        http.formLogin().and().authorizeRequests().anyRequest().authenticated();
