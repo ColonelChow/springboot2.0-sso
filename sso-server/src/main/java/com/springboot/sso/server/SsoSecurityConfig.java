@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 
 @Configuration
@@ -43,12 +44,14 @@ public class SsoSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.png",
                         "/**/*.woff2",
                         "/oauth/*",
-                        "/login"
+                        "/login",
+                        "/logout"
                 )
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()
+                //.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and().authorizeRequests()
                 ;
 //        http.formLogin().and().authorizeRequests().anyRequest().authenticated();
     }
